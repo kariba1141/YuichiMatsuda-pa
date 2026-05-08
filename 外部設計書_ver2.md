@@ -3316,7 +3316,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ##### 声掛けリスト（リマインダー）管理
 <img width="440" height="491" alt="image" src="https://github.com/user-attachments/assets/340b78a4-10dd-435b-a337-54fdc336b18f" />
 
-##### 声掛けリスト（リマインダー）の更新、及び、削除
+##### 声掛けリストあ（リマインダー）の更新、及び、削除
 <img width="440" height="472" alt="image" src="https://github.com/user-attachments/assets/3049648e-a293-4713-91f8-bd5294490607" />
 
 ## 6.9. アンケートメニューAPIの処理フロー
@@ -3365,16 +3365,16 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
 ##### 管理者によるロール権限設定（Admin Configures Role Permissions）
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16a_admin_configures_role_permissions.png" alt="Admin Configures Role Permissions" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16a_admin_configures_role_permissions.png" alt="Admin Configures Role Permissions" style="max-width:600px;width:600px;" />
 
 ##### ユーザー単位のサイドバーオーバーライド（Per-User Sidebar Override）
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16b_per_user_sidebar_override.png" alt="Per-User Sidebar Override" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16b_per_user_sidebar_override.png" alt="Per-User Sidebar Override" style="max-width:600px;width:600px;" />
 
 ##### Branch Admin ログイン（Branch Admin Login）
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16c_branch_admin_login.png" alt="Branch Admin Login" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16c_branch_admin_login.png" alt="Branch Admin Login" style="max-width:600px;width:600px;" />
 
 ##### フィーチャーページアクセスチェック（Feature Page Access Check）
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16d_feature_page_access_check.png" alt="Feature Page Access Check" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16d_feature_page_access_check.png" alt="Feature Page Access Check" style="max-width:600px;width:600px;" />
 
 
 # 7. 運用・保守設計
