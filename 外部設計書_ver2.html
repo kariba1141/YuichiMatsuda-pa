@@ -3,136 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ETRCARS 外部設計書</title>
+<title>ETRCARS 外部設計書 v1.1.3</title>
 <style>
-body { font-family: "Yu Gothic", "Meiryo", sans-serif; max-width: 960px; margin: 0 auto; padding: 20px; color: #333; line-height: 1.7; }
-.cover { text-align: center; padding: 120px 0; border-bottom: 3px solid #0366d6; margin-bottom: 60px; }
-.cover h1 { font-size: 2.5em; color: #0366d6; margin-bottom: 20px; }
-.cover .subtitle { font-size: 1.2em; color: #666; margin: 10px 0; }
-.cover .version { font-size: 1em; color: #888; margin-top: 40px; }
-.toc { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 8px; padding: 24px 32px; margin-bottom: 60px; }
-.toc h2 { color: #0366d6; border-bottom: 1px solid #e1e4e8; padding-bottom: 8px; }
-.toc ul { list-style: none; padding: 0; }
-.toc li { padding: 3px 0; }
-.toc li a { color: #0366d6; text-decoration: none; }
-.toc li a:hover { text-decoration: underline; }
-.toc-h1 { font-weight: bold; margin-top: 8px; }
-.toc-h2 { padding-left: 20px; }
-.toc-h3 { padding-left: 40px; font-size: 0.9em; color: #555; }
-h1 { border-bottom: 2px solid #0366d6; padding-bottom: 8px; color: #0366d6; }
-h2 { border-bottom: 1px solid #e1e4e8; padding-bottom: 4px; }
-code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+body { font-family: "Yu Gothic", "Meiryo", "MS Gothic", sans-serif; max-width: 960px; margin: 0 auto; padding: 20px 40px; color: #333; line-height: 1.8; }
+.cover { text-align: center; padding: 100px 0 80px; border-bottom: 3px solid #0366d6; margin-bottom: 0; page-break-after: always; }
+.cover .logo { font-size: 3em; font-weight: bold; color: #0366d6; letter-spacing: 4px; }
+.cover .logo span { color: #e74c3c; }
+.cover h1 { font-size: 2.2em; color: #222; margin: 40px 0 16px; }
+.cover .subtitle { font-size: 1.1em; color: #555; margin: 8px 0; }
+.cover .meta { margin-top: 60px; font-size: 0.95em; color: #666; line-height: 2.2; }
+.cover .meta td { padding: 4px 20px; }
+.section-page { padding: 40px 0; border-bottom: 1px solid #e1e4e8; margin-bottom: 40px; page-break-after: always; }
+.section-page h2 { font-size: 1.8em; color: #0366d6; border-bottom: 2px solid #0366d6; padding-bottom: 8px; margin-bottom: 24px; }
+.revision-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+.revision-table th { background: #0366d6; color: white; padding: 10px 14px; text-align: center; }
+.revision-table td { border: 1px solid #e1e4e8; padding: 10px 14px; vertical-align: top; }
+.revision-table tr:nth-child(even) { background: #f6f8fa; }
+.toc-table { width: 100%; border-collapse: collapse; font-size: 0.92em; }
+.toc-table td { padding: 4px 8px; border-bottom: 1px dotted #e1e4e8; }
+.toc-table a { color: #0366d6; text-decoration: none; }
+.toc-table a:hover { text-decoration: underline; }
+.toc-h1 td { font-weight: bold; font-size: 1em; padding-top: 10px; }
+.toc-h2 td { padding-left: 20px; }
+.toc-h3 td { padding-left: 40px; font-size: 0.88em; color: #555; }
+.content h1 { border-bottom: 2px solid #0366d6; padding-bottom: 8px; color: #0366d6; margin-top: 40px; }
+.content h2 { border-bottom: 1px solid #e1e4e8; padding-bottom: 4px; margin-top: 28px; }
+.content h3 { margin-top: 20px; }
+code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "Courier New", monospace; font-size: 0.9em; }
 pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; border: 1px solid #e1e4e8; }
 pre code { background: none; padding: 0; }
-table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 0.9em; }
 th, td { border: 1px solid #e1e4e8; padding: 8px 12px; text-align: left; }
 th { background: #f6f8fa; font-weight: bold; }
-img { max-width: 100%; height: auto; }
-blockquote { border-left: 4px solid #0366d6; margin: 0; padding-left: 16px; color: #666; }
-hr { border: none; border-top: 1px solid #e1e4e8; margin: 32px 0; }
+img { max-width: 100%; height: auto; display: block; margin: 12px auto; }
+blockquote { border-left: 4px solid #0366d6; margin: 0; padding: 8px 16px; color: #666; background: #f6f8fa; }
+hr { border: none; border-top: 2px solid #e1e4e8; margin: 40px 0; }
 @media print {
   .cover { page-break-after: always; }
-  .toc { page-break-after: always; }
+  .section-page { page-break-after: always; }
 }
 </style>
 </head>
 <body>
 
+<!-- 表紙 -->
 <div class="cover">
-  <h1>ETRCARS 外部設計書</h1>
+  <div class="logo">ETR<span>-</span>CARS</div>
+  <h1>外部設計書</h1>
   <p class="subtitle">Basic Design Document</p>
-  <p class="subtitle">バージョン 1.1.3</p>
-  <p class="version">
-    更新日：2026年4月30日<br>
-    作成者：CODIUM Company Limited<br>
-    更新者：Vilaphong Douangmala
-  </p>
+  <table class="meta" align="center">
+    <tr><td>バージョン</td><td>v1.1.3</td></tr>
+    <tr><td>更新日</td><td>2026年4月30日</td></tr>
+    <tr><td>作成会社</td><td>CODIUM Company Limited</td></tr>
+    <tr><td>更新者</td><td>Vilaphong Douangmala</td></tr>
+  </table>
 </div>
 
-<nav class="toc"><h2>目次</h2><ul>
-<li class="toc-h1"><a href="#etrcars-外部設計書">ETRCARS 外部設計書</a></li>
-<li class="toc-h1"><a href="#1--システムアーキテクチャ図">1. システムアーキテクチャ図</a></li>
-  <li class="toc-h2"><a href="#1-1--クライアント層">1.1. クライアント層</a></li>
-  <li class="toc-h2"><a href="#1-2--api・アプリケーション層">1.2. API・アプリケーション層</a></li>
-  <li class="toc-h2"><a href="#1-3--データストレージ層">1.3. データストレージ層</a></li>
-  <li class="toc-h2"><a href="#1-4--高レベルアーキテクチャ概要">1.4. 高レベルアーキテクチャ概要</a></li>
-  <li class="toc-h2"><a href="#1-5--外部システム連携">1.5. 外部システム連携</a></li>
-    <li class="toc-h3"><a href="#1-5-1--etr-buy-システム連携">1.5.1. ETR-BUY システム連携</a></li>
-    <li class="toc-h3"><a href="#1-5-2--エンドポイント仕様">1.5.2. エンドポイント仕様</a></li>
-  <li class="toc-h2"><a href="#1-6--システム構成図">1.6. システム構成図</a></li>
-<li class="toc-h1"><a href="#2--非機能要件">2. 非機能要件</a></li>
-  <li class="toc-h2"><a href="#2-1--性能要件">2.1. 性能要件</a></li>
-  <li class="toc-h2"><a href="#2-2--可用性要件">2.2. 可用性要件</a></li>
-<li class="toc-h1"><a href="#3--セキュリティ-認証仕様">3. セキュリティ/認証仕様</a></li>
-  <li class="toc-h2"><a href="#3-1--セキュリティ要件">3.1. セキュリティ要件</a></li>
-  <li class="toc-h2"><a href="#3-2--認証-authentication">3.2. 認証（Authentication）</a></li>
-  <li class="toc-h2"><a href="#3-3--認可とアクセス制御-authorization---access-control">3.3. 認可とアクセス制御（Authorization & Access Control）</a></li>
-    <li class="toc-h3"><a href="#3-3-1--層1-認証-あなたは誰か">3.3.1. 層1：認証（あなたは誰か？）</a></li>
-    <li class="toc-h3"><a href="#3-3-2--層2-rbac-あなたのロールはこのエンドポイントに許可されているか">3.3.2. 層2：RBAC（あなたのロールはこのエンドポイントに許可されているか？）</a></li>
-    <li class="toc-h3"><a href="#3-3-3--層3-メニュー-個別権限アクセス-この細粒度の権限を持っているか">3.3.3. 層3：メニュー/個別権限アクセス（この細粒度の権限を持っているか？）</a></li>
-    <li class="toc-h3"><a href="#3-3-4--層4-スコープ-bola-あなたはその特定のオブジェクトを所有しているか">3.3.4. 層4：スコープ/BOLA（あなたはその特定のオブジェクトを所有しているか？）</a></li>
-  <li class="toc-h2"><a href="#3-4--ロール-roles">3.4. ロール（Roles）</a></li>
-<li class="toc-h1"><a href="#4--監視-トラッキング仕様">4. 監視/トラッキング仕様</a></li>
-  <li class="toc-h2"><a href="#4-1--運用・保守要件">4.1. 運用・保守要件</a></li>
-<li class="toc-h1"><a href="#5--api-外部仕様-rest-json">5. API 外部仕様（REST/JSON）</a></li>
-  <li class="toc-h2"><a href="#5-1--api-一覧-主要エンドポイント">5.1. API 一覧（主要エンドポイント）</a></li>
-    <li class="toc-h3"><a href="#5-1-1--認証">5.1.1. 認証</a></li>
-    <li class="toc-h3"><a href="#5-1-2--顧客管理">5.1.2. 顧客管理</a></li>
-    <li class="toc-h3"><a href="#5-1-3--ナンバープレート管理">5.1.3. ナンバープレート管理</a></li>
-    <li class="toc-h3"><a href="#5-1-4--車両管理">5.1.4. 車両管理</a></li>
-    <li class="toc-h3"><a href="#5-1-5--注文管理">5.1.5. 注文管理</a></li>
-    <li class="toc-h3"><a href="#5-1-6--ショップ予約">5.1.6. ショップ予約</a></li>
-    <li class="toc-h3"><a href="#5-1-7--工場予約">5.1.7. 工場予約</a></li>
-    <li class="toc-h3"><a href="#5-1-8--分析・レポート">5.1.8. 分析・レポート</a></li>
-    <li class="toc-h3"><a href="#5-1-9--声掛けリスト-リマインダー">5.1.9. 声掛けリスト(リマインダー) </a></li>
-    <li class="toc-h3"><a href="#5-1-10--アンケートメニュー">5.1.10. アンケートメニュー</a></li>
-    <li class="toc-h3"><a href="#5-1-11--アンケート履歴">5.1.11. アンケート履歴</a></li>
-    <li class="toc-h3"><a href="#5-1-12--ユーザー管理">5.1.12. ユーザー管理</a></li>
-    <li class="toc-h3"><a href="#5-1-13--ディーラー管理">5.1.13. ディーラー管理</a></li>
-    <li class="toc-h3"><a href="#5-1-14--ショップ管理">5.1.14. ショップ管理</a></li>
-    <li class="toc-h3"><a href="#5-1-15--ログ管理">5.1.15. ログ管理</a></li>
-    <li class="toc-h3"><a href="#5-1-16--インポート・エクスポート">5.1.16. インポート・エクスポート</a></li>
-    <li class="toc-h3"><a href="#5-1-17--権限管理">5.1.17. 権限管理</a></li>
-    <li class="toc-h3"><a href="#5-1-18--ブランチアカウント管理">5.1.18. ブランチアカウント管理</a></li>
-    <li class="toc-h3"><a href="#5-1-19--車検オーダー">5.1.19. 車検オーダー</a></li>
-  <li class="toc-h2"><a href="#5-2--リクエスト-レスポンス例">5.2. リクエスト／レスポンス例</a></li>
-    <li class="toc-h3"><a href="#5-2-1--認証">5.2.1. 認証</a></li>
-    <li class="toc-h3"><a href="#5-2-2--顧客管理-api">5.2.2. 顧客管理 API</a></li>
-    <li class="toc-h3"><a href="#5-2-3--車両管理-api">5.2.3. 車両管理 API</a></li>
-    <li class="toc-h3"><a href="#5-2-4--見積もり管理-api">5.2.4. 見積もり管理 API</a></li>
-    <li class="toc-h3"><a href="#5-2-5--予約・カレンダー-api">5.2.5. 予約・カレンダー API</a></li>
-    <li class="toc-h3"><a href="#5-2-6--分析・レポート-api">5.2.6. 分析・レポート API</a></li>
-    <li class="toc-h3"><a href="#5-2-7--インポート・エクスポート-api">5.2.7. インポート・エクスポート API</a></li>
-    <li class="toc-h3"><a href="#5-2-8--声掛けリスト・アンケート-api">5.2.8. 声掛けリスト・アンケート API</a></li>
-    <li class="toc-h3"><a href="#5-2-9--システム管理-api">5.2.9. システム管理 API</a></li>
-    <li class="toc-h3"><a href="#5-2-10--エラーハンドリング方針">5.2.10. エラーハンドリング方針</a></li>
-<li class="toc-h1"><a href="#6--プロセスシーケンス図">6. プロセスシーケンス図</a></li>
-  <li class="toc-h2"><a href="#6-1--認証apiの処理フロー">6.1. 認証APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-2--顧客管理apiの処理フロー">6.2. 顧客管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-3--ナンバープレート管理apiの処理フロー">6.3. ナンバープレート管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-4--車両管理apiの処理フロー">6.4. 車両管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-5--見積管理apiの処理フロー">6.5. 見積管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-6--予約・カレンダーapiの処理フロー">6.6. 予約・カレンダーAPIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-7--分析・レポートapiの処理フロー">6.7. 分析・レポートAPIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-8--声掛けリストapiの処理フロー">6.8. 声掛けリストAPIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-9--アンケートメニューapiの処理フロー">6.9. アンケートメニューAPIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-10--アンケート履歴apiの処理フロー">6.10. アンケート履歴APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-11--ユーザー管理apiの処理フロー">6.11. ユーザー管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-12--ディーラー管理apiの処理フロー">6.12. ディーラー管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-13--ショップ管理apiの処理フロー">6.13. ショップ管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-14--ログ管理apiの処理フロー">6.14. ログ管理APIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-15--インポート・エクスポートapiの処理フロー">6.15. インポート・エクスポートAPIの処理フロー</a></li>
-  <li class="toc-h2"><a href="#6-16--権限管理---branch-admin-処理フロー">6.16. 権限管理 & Branch Admin 処理フロー</a></li>
-<li class="toc-h1"><a href="#7--運用・保守設計">7. 運用・保守設計</a></li>
-  <li class="toc-h2"><a href="#7-1--環境構成">7.1. 環境構成</a></li>
-  <li class="toc-h2"><a href="#7-2--バックアップ方針">7.2. バックアップ方針</a></li>
-  <li class="toc-h2"><a href="#7-3--監視設計">7.3. 監視設計</a></li>
-<li class="toc-h1"><a href="#8--外部システム連携">8. 外部システム連携</a></li>
-<li class="toc-h1"><a href="#9--テスト設計概要">9. テスト設計概要</a></li>
-<li class="toc-h1"><a href="#10--システム機能概要">10. システム機能概要</a></li>
-</ul></nav>
+<!-- 改訂履歴 -->
+
+<div class="section-page">
+<h2>📋 改訂履歴</h2>
+<table class="revision-table">
+<thead>
+<tr><th>バージョン</th><th>変更内容</th><th>更新日</th><th>更新者</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>1.0.0</td>
+  <td>初版作成</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>1.1.0</td>
+  <td>
+    ・セクション3（セキュリティ/認証）を再構成し、3.2 認証、3.3 認可とアクセス制御、3.4 ロールの各サブセクションを新設<br>
+    ・JWTトークン有効期限を7日に修正<br>
+    ・セクション7.1 環境構成を更新：ステージング環境を追加、開発環境をプロダクション構成に合わせて再設計、ロードバランサをAWS ALBに変更
+  </td>
+  <td>2026-04-30</td>
+  <td>Vilaphong Douangmala</td>
+</tr>
+<tr>
+  <td>1.1.1</td>
+  <td>
+    ・権限管理API（/api/permissions/、/api/role-permissions/、/api/user-profiles/.../permissions/ 配下の8エンドポイント）をセクション5.1リストおよびセクション5.2サンプルに追加<br>
+    ・ブランチアカウント管理API（/api/branch-account-user-profiles/）をセクション5.1リストおよびセクション5.2サンプルに追加<br>
+    ・セクション6.16「権限管理 & Branch Admin 処理フロー」を新設し、4つのシーケンス図プレースホルダーを追加
+  </td>
+  <td>2026-04-30</td>
+  <td>Vilaphong Douangmala</td>
+</tr>
+<tr>
+  <td>1.1.2</td>
+  <td>
+    ・GET /api/car_checkup_orders/ および GET /api/car_checkup_orders/export/ をセクション5.1リストおよびセクション5.2.4「注文管理API」に追加<br>
+    ・フィルター、リクエスト/レスポンス例、非同期エクスポート動作、AdminおよびBranch Admin向け顧客データ公開ルールを記載<br>
+    ・セクション6.5に3つの新規サブブロック（ブラウズ、エクスポート、メニュー権限ゲート）を追加し、シーケンス図プレースホルダーを設置
+  </td>
+  <td>2026-04-30</td>
+  <td>Vilaphong Douangmala</td>
+</tr>
+<tr>
+  <td>1.1.3</td>
+  <td>
+    ・セクション14.1.8「車検オーダータイプ選択画面」を新設：3項目・8項目・15項目・リースの4種類の点検タイプカードおよびフィールド詳細テーブルを記載<br>
+    ・セクション14.1.9「車検点検フォーム画面」を新設：結果凡例（○/△/×/—）、事前定義された点検項目リスト、行ごとの結果選択、備考欄、保存操作、フィールド詳細テーブルを記載<br>
+    ・両サブセクションは既存の14.1.x パターンに従い、スクリーンショット挿入用プレースホルダーを含む
+  </td>
+  <td>2026-04-30</td>
+  <td>Vilaphong Douangmala</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
+<!-- 目次 -->
+
+<div class="section-page">
+<h2>📑 目次</h2>
+<table class="toc-table">
+<tr class="toc-h1"><td>ETRCARS 外部設計書</td></tr>
+<tr class="toc-h1"><td>1. システムアーキテクチャ図</td></tr>
+<tr class="toc-h2"><td>　1.1. クライアント層</td></tr>
+<tr class="toc-h2"><td>　1.2. API・アプリケーション層</td></tr>
+<tr class="toc-h2"><td>　1.3. データストレージ層</td></tr>
+<tr class="toc-h2"><td>　1.4. 高レベルアーキテクチャ概要</td></tr>
+<tr class="toc-h2"><td>　1.5. 外部システム連携</td></tr>
+<tr class="toc-h3"><td>　　1.5.1. ETR-BUY システム連携</td></tr>
+<tr class="toc-h3"><td>　　1.5.2. エンドポイント仕様</td></tr>
+<tr class="toc-h2"><td>　1.6. システム構成図</td></tr>
+<tr class="toc-h1"><td>2. 非機能要件</td></tr>
+<tr class="toc-h2"><td>　2.1. 性能要件</td></tr>
+<tr class="toc-h2"><td>　2.2. 可用性要件</td></tr>
+<tr class="toc-h1"><td>3. セキュリティ/認証仕様</td></tr>
+<tr class="toc-h2"><td>　3.1. セキュリティ要件</td></tr>
+<tr class="toc-h2"><td>　3.2. 認証（Authentication）</td></tr>
+<tr class="toc-h2"><td>　3.3. 認可とアクセス制御（Authorization & Access Control）</td></tr>
+<tr class="toc-h3"><td>　　3.3.1. 層1：認証（あなたは誰か？）</td></tr>
+<tr class="toc-h3"><td>　　3.3.2. 層2：RBAC（あなたのロールはこのエンドポイントに許可されているか？）</td></tr>
+<tr class="toc-h3"><td>　　3.3.3. 層3：メニュー/個別権限アクセス（この細粒度の権限を持っているか？）</td></tr>
+<tr class="toc-h3"><td>　　3.3.4. 層4：スコープ/BOLA（あなたはその特定のオブジェクトを所有しているか？）</td></tr>
+<tr class="toc-h2"><td>　3.4. ロール（Roles）</td></tr>
+<tr class="toc-h1"><td>4. 監視/トラッキング仕様</td></tr>
+<tr class="toc-h2"><td>　4.1. 運用・保守要件</td></tr>
+<tr class="toc-h1"><td>5. API 外部仕様（REST/JSON）</td></tr>
+<tr class="toc-h2"><td>　5.1. API 一覧（主要エンドポイント）</td></tr>
+<tr class="toc-h3"><td>　　5.1.1. 認証</td></tr>
+<tr class="toc-h3"><td>　　5.1.2. 顧客管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.3. ナンバープレート管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.4. 車両管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.5. 注文管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.6. ショップ予約</td></tr>
+<tr class="toc-h3"><td>　　5.1.7. 工場予約</td></tr>
+<tr class="toc-h3"><td>　　5.1.8. 分析・レポート</td></tr>
+<tr class="toc-h3"><td>　　5.1.9. 声掛けリスト(リマインダー) </td></tr>
+<tr class="toc-h3"><td>　　5.1.10. アンケートメニュー</td></tr>
+<tr class="toc-h3"><td>　　5.1.11. アンケート履歴</td></tr>
+<tr class="toc-h3"><td>　　5.1.12. ユーザー管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.13. ディーラー管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.14. ショップ管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.15. ログ管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.16. インポート・エクスポート</td></tr>
+<tr class="toc-h3"><td>　　5.1.17. 権限管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.18. ブランチアカウント管理</td></tr>
+<tr class="toc-h3"><td>　　5.1.19. 車検オーダー</td></tr>
+<tr class="toc-h2"><td>　5.2. リクエスト／レスポンス例</td></tr>
+<tr class="toc-h3"><td>　　5.2.1. 認証</td></tr>
+<tr class="toc-h3"><td>　　5.2.2. 顧客管理 API</td></tr>
+<tr class="toc-h3"><td>　　5.2.3. 車両管理 API</td></tr>
+<tr class="toc-h3"><td>　　5.2.4. 見積もり管理 API</td></tr>
+<tr class="toc-h3"><td>　　5.2.5. 予約・カレンダー API</td></tr>
+<tr class="toc-h3"><td>　　5.2.6. 分析・レポート API</td></tr>
+<tr class="toc-h3"><td>　　5.2.7. インポート・エクスポート API</td></tr>
+<tr class="toc-h3"><td>　　5.2.8. 声掛けリスト・アンケート API</td></tr>
+<tr class="toc-h3"><td>　　5.2.9. システム管理 API</td></tr>
+<tr class="toc-h3"><td>　　5.2.10. エラーハンドリング方針</td></tr>
+<tr class="toc-h1"><td>6. プロセスシーケンス図</td></tr>
+<tr class="toc-h2"><td>　6.1. 認証APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.2. 顧客管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.3. ナンバープレート管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.4. 車両管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.5. 見積管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.6. 予約・カレンダーAPIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.7. 分析・レポートAPIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.8. 声掛けリストAPIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.9. アンケートメニューAPIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.10. アンケート履歴APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.11. ユーザー管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.12. ディーラー管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.13. ショップ管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.14. ログ管理APIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.15. インポート・エクスポートAPIの処理フロー</td></tr>
+<tr class="toc-h2"><td>　6.16. 権限管理 & Branch Admin 処理フロー</td></tr>
+<tr class="toc-h1"><td>7. 運用・保守設計</td></tr>
+<tr class="toc-h2"><td>　7.1. 環境構成</td></tr>
+<tr class="toc-h2"><td>　7.2. バックアップ方針</td></tr>
+<tr class="toc-h2"><td>　7.3. 監視設計</td></tr>
+<tr class="toc-h1"><td>8. 外部システム連携</td></tr>
+<tr class="toc-h1"><td>9. テスト設計概要</td></tr>
+<tr class="toc-h1"><td>10. システム機能概要</td></tr>
+<tr class="toc-h2"><td>　10.1. ユーザー管理</td></tr>
+<tr class="toc-h2"><td>　10.2. 商品管理</td></tr>
+<tr class="toc-h2"><td>　10.3. 見積もり管理</td></tr>
+<tr class="toc-h2"><td>　10.4. 車両・顧客管理</td></tr>
+<tr class="toc-h1"><td>11. データフロー設計</td></tr>
+<tr class="toc-h2"><td>　11.1. ユーザーフロー</td></tr>
+<tr class="toc-h2"><td>　11.2. 車両およびナンバープレート情報のフロー</td></tr>
+<tr class="toc-h2"><td>　11.3. 顧客情報フロー</td></tr>
+<tr class="toc-h2"><td>　11.4. 商品・サービスフロー</td></tr>
+<tr class="toc-h2"><td>　11.5. 見積もりフロー</td></tr>
+<tr class="toc-h2"><td>　11.6. エンドポイント権限表</td></tr>
+<tr class="toc-h1"><td>12. ハードウェアおよびインフラ仕様</td></tr>
+<tr class="toc-h2"><td>　12.1. Web／API サーバー</td></tr>
+<tr class="toc-h2"><td>　12.2. データベースサーバー</td></tr>
+<tr class="toc-h2"><td>　12.3. キャッシュ層</td></tr>
+<tr class="toc-h2"><td>　12.4. ストレージ</td></tr>
+<tr class="toc-h2"><td>　12.5. ネットワーキング</td></tr>
+<tr class="toc-h1"><td>13. ソフトウェアコンポーネント</td></tr>
+<tr class="toc-h2"><td>　13.1. バックエンドAPI サーバー(Django)</td></tr>
+<tr class="toc-h2"><td>　13.2. Webクライアントアプリケーション(Angular)</td></tr>
+<tr class="toc-h2"><td>　13.3. iOSクライアントアプリケーション(Swift/UIKit)</td></tr>
+<tr class="toc-h1"><td>14. インターフェース設計仕様</td></tr>
+<tr class="toc-h2"><td>　14.1. iOSアプリケーション UI</td></tr>
+<tr class="toc-h3"><td>　　14.1.1. ログイン画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.2. ホーム画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.3. 顧客/車両情報検索画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.4. ステータス画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.5. 商品閲覧・選択画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.6. 車検画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.7. カート画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.8. 車検オーダー タイプ選択画面</td></tr>
+<tr class="toc-h3"><td>　　14.1.9. 車検 点検フォーム画面</td></tr>
+<tr class="toc-h2"><td>　14.2. Webアプリケーション UI</td></tr>
+<tr class="toc-h3"><td>　　14.2.1. ダッシュボード</td></tr>
+<tr class="toc-h3"><td>　　14.2.2. ユーザー管理インターフェース</td></tr>
+<tr class="toc-h3"><td>　　14.2.3. 顧客管理インターフェース</td></tr>
+<tr class="toc-h3"><td>　　14.2.4. カーメンテ管理インターフェース</td></tr>
+<tr class="toc-h3"><td>　　14.2.5. 分析インターフェース</td></tr>
+<tr class="toc-h2"><td>　14.3. 画面遷移図</td></tr>
+<tr class="toc-h1"><td>15. データベース構造</td></tr>
+<tr class="toc-h2"><td>　15.1. テーブル構成</td></tr>
+<tr class="toc-h2"><td>　15.2. テーブル構造</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.1</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.2</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.3</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.4</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.5</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.6</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.7</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.8</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.9</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.10</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.11</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.12</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.13</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.14</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.15</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.16</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.17</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.18</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.19</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.20</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.21</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.22</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.23</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.24</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.25</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.26</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.27</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.28</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.29</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.30</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.31</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.32</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.33</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.34</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.35</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.36</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.37</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.38</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.39</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.40</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.41</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.42</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.43</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.44</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.45</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.46</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.47</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.48</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.49</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.50</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.51</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.52</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.53</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.54</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.55</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.56</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.57</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.58</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.59</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.60</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.61</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.62</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.63</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.64</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.65</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.66</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.67</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.68</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.69</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.70</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.71</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.72</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.73</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.74</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.75</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.76</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.77</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.78</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.79</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.80</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.81</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.82</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.83</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.84</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.85</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.86</td></tr>
+<tr class="toc-h3"><td>　　テーブル No.87</td></tr>
+<tr class="toc-h2"><td>　15.3. Web機能</td></tr>
+<tr class="toc-h2"><td>　15.4. iOS機能</td></tr>
+
+</table>
+</div>
+
+
+<!-- 本文 -->
 <div class="content">
 <h1 id="etrcars-外部設計書">ETRCARS 外部設計書</h1>
 <h1 id="システムアーキテクチャ図">1. システムアーキテクチャ図</h1>
@@ -17017,5 +17225,6 @@ Repair）まで、必要なすべてのチェックポイントを網羅し、�
 <p><img width="425" height="329" alt="image" src="https://github.com/user-attachments/assets/0444d608-12b2-4272-a45c-ad8e578ed7a4" /></p>
 
 </div>
+
 </body>
 </html>
