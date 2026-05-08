@@ -3275,7 +3275,17 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ## 6.16. 権限管理 & Branch Admin 処理フロー
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16_permission_branch_admin_flow.png" alt="6.16_permission_branch_admin_flow.png" style="max-width:100%;" />
+##### 管理者によるロール権限設定（Admin Configures Role Permissions）
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16a_admin_configures_role_permissions.png" alt="Admin Configures Role Permissions" style="max-width:600px;width:600px;" />
+
+##### ユーザー単位のサイドバーオーバーライド（Per-User Sidebar Override）
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16b_per_user_sidebar_override.png" alt="Per-User Sidebar Override" style="max-width:600px;width:600px;" />
+
+##### Branch Admin ログイン（Branch Admin Login）
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16c_branch_admin_login.png" alt="Branch Admin Login" style="max-width:600px;width:600px;" />
+
+##### フィーチャーページアクセスチェック（Feature Page Access Check）
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16d_feature_page_access_check.png" alt="Feature Page Access Check" style="max-width:600px;width:600px;" />
 
 # 7. 運用・保守設計
 ## 7.1. 環境構成
