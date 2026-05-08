@@ -3228,6 +3228,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 
 # 6. プロセスシーケンス図
 ## 6.1. 認証APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.1_authentication_flow.png" alt="6.1_authentication_flow.png" style="max-width:100%;" />
 ##### ログインフロー
 <img width="429" height="196" alt="image" src="https://github.com/user-attachments/assets/7271fd48-4f8b-4881-be26-7c4756970b09" />
 
@@ -3235,6 +3236,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="429" height="125" alt="image" src="https://github.com/user-attachments/assets/37252148-7b86-4c57-952e-c4051f15c644" />
 
 ## 6.2. 顧客管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.2_customer_management_flow.png" alt="6.2_customer_management_flow.png" style="max-width:100%;" />
 ##### 顧客検索
 <img width="429" height="122" alt="image" src="https://github.com/user-attachments/assets/bbd1a0eb-23bd-4d8e-9637-f4c6dd01c67c" />
 
@@ -3242,6 +3244,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="429" height="122" alt="image" src="https://github.com/user-attachments/assets/aabfebcf-1587-4e9c-9fe0-f74fad2a7b1f" />
 
 ## 6.3. ナンバープレート管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_license_plate_flow.png" alt="6.3_license_plate_flow.png" style="max-width:100%;" />
 ##### ナンバープレート作成（車両データ付き）
 <img width="428" height="257" alt="image" src="https://github.com/user-attachments/assets/f73c83ff-e232-4d5b-85cd-e4613d5254f8" />
 
@@ -3258,6 +3261,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="629" alt="image" src="https://github.com/user-attachments/assets/dcfd966c-4ea7-4d66-b6fc-25c09b995feb" />
 
 ## 6.4. 車両管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_vehicle_management_flow.png" alt="6.4_vehicle_management_flow.png" style="max-width:100%;" />
 ##### 車両データ管理
 <img width="440" height="556" alt="image" src="https://github.com/user-attachments/assets/84d9216f-0a4a-4982-bd58-e67aa954ef45" />
 
@@ -3293,6 +3297,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="319" alt="image" src="https://github.com/user-attachments/assets/46295d1e-bc25-4d5c-b482-bde903ceb8ba" />
 
 ## 6.6. 予約・カレンダーAPIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_booking_scheduling_flow.png" alt="6.6_booking_scheduling_flow.png" style="max-width:100%;" />
 ##### ショップ予約管理
 <img width="440" height="548" alt="image" src="https://github.com/user-attachments/assets/e05b8bda-89ac-4a92-acb7-c6ae55d2d253" />
 
@@ -3306,6 +3311,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="310" alt="image" src="https://github.com/user-attachments/assets/e5c1bb0c-29ec-440b-b033-0ac9b80fb036" />
 
 ## 6.7. 分析・レポートAPIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_analytics_reporting_flow.png" alt="6.7_analytics_reporting_flow.png" style="max-width:100%;" />
 ##### 販売分析
 <img width="440" height="354" alt="image" src="https://github.com/user-attachments/assets/dda11c65-2297-471c-a052-e17d428f58de" />
 
@@ -3320,6 +3326,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="472" alt="image" src="https://github.com/user-attachments/assets/3049648e-a293-4713-91f8-bd5294490607" />
 
 ## 6.9. アンケートメニューAPIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_questionnaire_menu_flow.png" alt="6.9_questionnaire_menu_flow.png" style="max-width:100%;" />
 ##### アンケートメニュー管理
 <img width="440" height="541" alt="image" src="https://github.com/user-attachments/assets/00bc35cd-1dbb-4fbe-b308-34368f556ba5" />
 
@@ -3327,10 +3334,12 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="559" alt="image" src="https://github.com/user-attachments/assets/cbb0d1c2-159f-4348-9d30-745624f4985d" />
 
 ## 6.10. アンケート履歴APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.10_question_history_flow.png" alt="6.10_question_history_flow.png" style="max-width:100%;" />
 ##### アンケート履歴
 <img width="440" height="476" alt="image" src="https://github.com/user-attachments/assets/b1ae9cfb-0141-42ff-bba4-2f33c364cf70" />
 
 ## 6.11. ユーザー管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_user_management_flow.png" alt="6.11_user_management_flow.png" style="max-width:100%;" />
 ##### ユーザー管理
 <img width="440" height="561" alt="image" src="https://github.com/user-attachments/assets/119a7023-0443-4701-bab4-7cd25f459012" />
 
@@ -3341,10 +3350,12 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="488" alt="image" src="https://github.com/user-attachments/assets/b65007ae-f300-45b1-b3d9-020ecc6c3cb6" />
 
 ## 6.12. ディーラー管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.12_dealer_management_flow.png" alt="6.12_dealer_management_flow.png" style="max-width:100%;" />
 ##### ディーラー管理
 <img width="440" height="572" alt="image" src="https://github.com/user-attachments/assets/9166da1c-a309-4630-95ae-d37568a4bf6f" />
 
 ## 6.13. ショップ管理APIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_shop_management_flow.png" alt="6.13_shop_management_flow.png" style="max-width:100%;" />
 ##### ショップ管理
 <img width="440" height="593" alt="image" src="https://github.com/user-attachments/assets/51103ae5-fffe-4499-913c-9272922b5788" />
 
@@ -3352,9 +3363,10 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="621" alt="image" src="https://github.com/user-attachments/assets/62175412-9407-43fc-aca3-1860cb4ba313" />
 
 ## 6.14. ログ管理APIの処理フロー
-<img width="440" height="487" alt="image" src="https://github.com/user-attachments/assets/214acbea-c4f6-42c4-8b13-e120f8f49bcc" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.14_logs_flow.png" alt="6.14_logs_flow.png" style="max-width:100%;" />
 
 ## 6.15. インポート・エクスポートAPIの処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_import_export_flow.png" alt="6.15_import_export_flow.png" style="max-width:100%;" />
 ##### インポート結果
 <img width="440" height="498" alt="image" src="https://github.com/user-attachments/assets/f07c7354-f166-41db-bedf-e2762d5c1e55" />
 
@@ -3362,6 +3374,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 <img width="440" height="456" alt="image" src="https://github.com/user-attachments/assets/1523fc46-a0d1-4ba9-a7f0-dd124abdc07c" />
 
 ## 6.16. 権限管理 & Branch Admin 処理フロー
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16_permission_branch_admin_flow.png" alt="6.16_permission_branch_admin_flow.png" style="max-width:100%;" />
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
 ##### 管理者によるロール権限設定（Admin Configures Role Permissions）
