@@ -3055,7 +3055,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 - 200 OK：取得成功
 - 401 Unauthorized：トークンなし／無効
 
-#### 5.2.10. エラーハンドリング方針
+#### 5.2.9.5. エラーハンドリング方針
 ##### HTTP ステータスコード
 - 200 OK：GET／PATCH の成功
 - 201 Created：POST の成功
@@ -3117,9 +3117,9 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ```
 
 
-### 5.2.10. 権限管理 API
+#### 5.2.9.6. 権限・ブランチアカウント管理
 
-#### 5.2.10.1. 権限カタログ
+##### 5.2.9.6.1. 権限カタログ
 - エンドポイント：/api/permissions/
 - メソッド：GET
 - 認証：必須（JWT Bearer）
@@ -3141,7 +3141,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ]
 ```
 
-#### 5.2.10.2. ロール権限管理
+##### 5.2.9.6.2. ロール権限管理
 - エンドポイント：
   - /api/role-permissions/（一覧取得・新規作成）
   - /api/role-permissions/{id}/（更新・削除）
@@ -3186,7 +3186,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 }
 ```
 
-#### 5.2.10.3. ユーザー権限管理
+##### 5.2.9.6.3. ユーザー権限管理
 - エンドポイント：
   - /api/user-profiles/{id}/permissions/（ユーザーの有効権限を取得）
   - /api/user-profiles/{id}/update-permissions/（ユーザー単位のオーバーライドを更新）
@@ -3217,7 +3217,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ]
 ```
 
-#### 5.2.10.4. ブランチアカウント管理（Branch Account Management）
+##### 5.2.9.6.4. ブランチアカウント管理（Branch Account Management）
 - エンドポイント：
   - /api/branch-account-user-profiles/（Branch Admin ユーザーの一覧取得・作成）
   - /api/branch-account-user-profiles/{id}/（更新・ソフトデリート）
@@ -3228,162 +3228,140 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 
 # 6. プロセスシーケンス図
 ## 6.1. 認証APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.1_authentication_flow.png" alt="6.1_authentication_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.1_authentication_flow.png" alt="6.1_authentication_flow.png" style="max-width:100%;" />
 ##### ログインフロー
+<img width="429" height="196" alt="image" src="https://github.com/user-attachments/assets/7271fd48-4f8b-4881-be26-7c4756970b09" />
 
 ##### ログアウトフロー
+<img width="429" height="125" alt="image" src="https://github.com/user-attachments/assets/37252148-7b86-4c57-952e-c4051f15c644" />
 
 ## 6.2. 顧客管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.2_customer_management_flow.png" alt="6.2_customer_management_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.2_customer_management_flow.png" alt="6.2_customer_management_flow.png" style="max-width:100%;" />
 ##### 顧客検索
+<img width="429" height="122" alt="image" src="https://github.com/user-attachments/assets/bbd1a0eb-23bd-4d8e-9637-f4c6dd01c67c" />
 
 ##### 顧客の新規作成または取得
+<img width="429" height="122" alt="image" src="https://github.com/user-attachments/assets/aabfebcf-1587-4e9c-9fe0-f74fad2a7b1f" />
 
 ## 6.3. ナンバープレート管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_license_plate_flow.png" alt="6.3_license_plate_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_license_plate_flow.png" alt="6.3_license_plate_flow.png" style="max-width:100%;" />
 ##### ナンバープレート作成（車両データ付き）
+<img width="428" height="257" alt="image" src="https://github.com/user-attachments/assets/f73c83ff-e232-4d5b-85cd-e4613d5254f8" />
 
 ##### ナンバープレート作成
+<img width="428" height="279" alt="image" src="https://github.com/user-attachments/assets/029be497-3198-425c-9edf-8012f1d62579" />
 
 ##### ナンバープレート CRUD 操作
+<img width="428" height="596" alt="image" src="https://github.com/user-attachments/assets/7cb8a3e3-b134-4918-85d0-1d0c3ce55a51" />
 
 ##### ナンバープレート更新、及び、削除
+<img width="440" height="629" alt="image" src="https://github.com/user-attachments/assets/393115a4-86e0-48bd-a581-7b4957925229" />
 
 ##### ナンバープレート購入履歴
+<img width="440" height="629" alt="image" src="https://github.com/user-attachments/assets/dcfd966c-4ea7-4d66-b6fc-25c09b995feb" />
 
 ## 6.4. 車両管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_vehicle_management_flow.png" alt="6.4_vehicle_management_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_vehicle_management_flow.png" alt="6.4_vehicle_management_flow.png" style="max-width:100%;" />
 ##### 車両データ管理
+<img width="440" height="556" alt="image" src="https://github.com/user-attachments/assets/84d9216f-0a4a-4982-bd58-e67aa954ef45" />
 
 ##### 車両データの更新、及び、削除
+<img width="428" height="639" alt="image" src="https://github.com/user-attachments/assets/a4801726-516c-49e4-8357-760ac271d93d" />
 
 ##### 車両検索
+<img width="440" height="546" alt="image" src="https://github.com/user-attachments/assets/115b522e-6173-4fa1-a389-5067f49fd950" />
 
 ##### 安全点検ステータスの更新
+<img width="440" height="492" alt="image" src="https://github.com/user-attachments/assets/b0e6daa3-9e5b-4937-beae-8eb6760dfcff" />
 
 ##### 車両リコール
+<img width="440" height="513" alt="image" src="https://github.com/user-attachments/assets/c15d1e9f-7c7e-4caf-a920-02a8e66ee791" />
 
 ##### 車両メーカー管理
+<img width="440" height="549" alt="image" src="https://github.com/user-attachments/assets/a2e08e6c-3cbc-427e-bb39-e451a7834339" />
 
 ##### 車両メーカーの更新、及び、削除
+<img width="440" height="642" alt="image" src="https://github.com/user-attachments/assets/635504e2-0d61-418a-abd6-fb768c490940" />
 
 ## 6.5. 見積管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_order_management_flow.png" alt="6.5_order_management_flow.png" style="max-width:100%;" />
-
 ##### 見積の新規作成、及び、取得
+<img width="440" height="542" alt="image" src="https://github.com/user-attachments/assets/67e9b5c8-1c95-433f-8902-03b8d1ce8797" />
 
 ##### 見積検索
+<img width="440" height="632" alt="image" src="https://github.com/user-attachments/assets/30e78fc6-87b7-4dd4-8cc2-2a70dd09c42c" />
 
 ##### 見積の一括削除
+<img width="440" height="412" alt="image" src="https://github.com/user-attachments/assets/89e3b71c-2cd2-4e5b-afa3-6b4a11d3f16b" />
 
 ##### 見積の購買管理
+<img width="440" height="319" alt="image" src="https://github.com/user-attachments/assets/46295d1e-bc25-4d5c-b482-bde903ceb8ba" />
 
 ## 6.6. 予約・カレンダーAPIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_booking_scheduling_flow.png" alt="6.6_booking_scheduling_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_booking_scheduling_flow.png" alt="6.6_booking_scheduling_flow.png" style="max-width:100%;" />
 ##### ショップ予約管理
+<img width="440" height="548" alt="image" src="https://github.com/user-attachments/assets/e05b8bda-89ac-4a92-acb7-c6ae55d2d253" />
 
 ##### ショップ予約の更新、及び、削除
+<img width="440" height="559" alt="image" src="https://github.com/user-attachments/assets/39197bd8-3d4f-4e5a-886f-82e7d3a36c70" />
 
 ##### 工場予約管理
+<img width="440" height="452" alt="image" src="https://github.com/user-attachments/assets/5cf16a53-74d5-4130-8291-16911702b942" />
 
 ##### 工場予約の技術者割り当て
+<img width="440" height="310" alt="image" src="https://github.com/user-attachments/assets/e5c1bb0c-29ec-440b-b033-0ac9b80fb036" />
 
 ## 6.7. 分析・レポートAPIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_analytics_reporting_flow.png" alt="6.7_analytics_reporting_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_analytics_reporting_flow.png" alt="6.7_analytics_reporting_flow.png" style="max-width:100%;" />
 ##### 販売分析
+<img width="440" height="354" alt="image" src="https://github.com/user-attachments/assets/dda11c65-2297-471c-a052-e17d428f58de" />
 
 ##### 商品購買レポート
+<img width="440" height="304" alt="image" src="https://github.com/user-attachments/assets/c2b12b25-8ad0-44c6-addd-47c0694ec64a" />
 
 ## 6.8. 声掛けリストAPIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.8_reminder_flow.png" alt="6.8_reminder_flow.png" style="max-width:100%;" />
-
 ##### 声掛けリスト（リマインダー）管理
+<img width="440" height="491" alt="image" src="https://github.com/user-attachments/assets/340b78a4-10dd-435b-a337-54fdc336b18f" />
 
 ##### 声掛けリストあ（リマインダー）の更新、及び、削除
+<img width="440" height="472" alt="image" src="https://github.com/user-attachments/assets/3049648e-a293-4713-91f8-bd5294490607" />
 
 ## 6.9. アンケートメニューAPIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_questionnaire_menu_flow.png" alt="6.9_questionnaire_menu_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_questionnaire_menu_flow.png" alt="6.9_questionnaire_menu_flow.png" style="max-width:100%;" />
 ##### アンケートメニュー管理
+<img width="440" height="541" alt="image" src="https://github.com/user-attachments/assets/00bc35cd-1dbb-4fbe-b308-34368f556ba5" />
 
 ##### 質問項目管理
+<img width="440" height="559" alt="image" src="https://github.com/user-attachments/assets/cbb0d1c2-159f-4348-9d30-745624f4985d" />
 
 ## 6.10. アンケート履歴APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.10_question_history_flow.png" alt="6.10_question_history_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.10_question_history_flow.png" alt="6.10_question_history_flow.png" style="max-width:100%;" />
 ##### アンケート履歴
+<img width="440" height="476" alt="image" src="https://github.com/user-attachments/assets/b1ae9cfb-0141-42ff-bba4-2f33c364cf70" />
 
 ## 6.11. ユーザー管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_user_management_flow.png" alt="6.11_user_management_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_user_management_flow.png" alt="6.11_user_management_flow.png" style="max-width:100%;" />
 ##### ユーザー管理
+<img width="440" height="561" alt="image" src="https://github.com/user-attachments/assets/119a7023-0443-4701-bab4-7cd25f459012" />
 
 ##### ユーザーの更新、及び、削除
+<img width="440" height="576" alt="image" src="https://github.com/user-attachments/assets/99ce1b42-4cc7-4720-a04b-c8518332dd3c" />
 
 ##### タブレットユーザー管理
+<img width="440" height="488" alt="image" src="https://github.com/user-attachments/assets/b65007ae-f300-45b1-b3d9-020ecc6c3cb6" />
 
 ## 6.12. ディーラー管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.12_dealer_management_flow.png" alt="6.12_dealer_management_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.12_dealer_management_flow.png" alt="6.12_dealer_management_flow.png" style="max-width:100%;" />
 ##### ディーラー管理
+<img width="440" height="572" alt="image" src="https://github.com/user-attachments/assets/9166da1c-a309-4630-95ae-d37568a4bf6f" />
 
 ## 6.13. ショップ管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_shop_management_flow.png" alt="6.13_shop_management_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_shop_management_flow.png" alt="6.13_shop_management_flow.png" style="max-width:100%;" />
 ##### ショップ管理
+<img width="440" height="593" alt="image" src="https://github.com/user-attachments/assets/51103ae5-fffe-4499-913c-9272922b5788" />
 
 ##### ショップの更新、及び、削除
+<img width="440" height="621" alt="image" src="https://github.com/user-attachments/assets/62175412-9407-43fc-aca3-1860cb4ba313" />
 
 ## 6.14. ログ管理APIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.14_logs_flow.png" alt="6.14_logs_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.14_logs_flow.png" alt="6.14_logs_flow.png" style="max-width:100%;" />
+<img width="440" height="487" alt="image" src="https://github.com/user-attachments/assets/214acbea-c4f6-42c4-8b13-e120f8f49bcc" />
 
 ## 6.15. インポート・エクスポートAPIの処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_import_export_flow.png" alt="6.15_import_export_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_import_export_flow.png" alt="6.15_import_export_flow.png" style="max-width:100%;" />
 ##### インポート結果
+<img width="440" height="498" alt="image" src="https://github.com/user-attachments/assets/f07c7354-f166-41db-bedf-e2762d5c1e55" />
 
 ##### エクスポート結果
+<img width="440" height="456" alt="image" src="https://github.com/user-attachments/assets/1523fc46-a0d1-4ba9-a7f0-dd124abdc07c" />
 
 ## 6.16. 権限管理 & Branch Admin 処理フロー
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16_permission_branch_admin_flow.png" alt="6.16_permission_branch_admin_flow.png" style="max-width:100%;" />
-
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16_permission_branch_admin_flow.png" alt="6.16_permission_branch_admin_flow.png" style="max-width:100%;" />
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
 ##### 管理者によるロール権限設定（Admin Configures Role Permissions）
@@ -3510,8 +3488,10 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 これにより、ユーザーは自身の業務に必要な情報のみにアクセスできるよう制御されています。
 
 - タブレットユーザー作成フロー
+<img width="224" height="213" alt="image" src="https://github.com/user-attachments/assets/851fbedd-9807-4df1-9f76-6d158796b36a" />
 
 - Webユーザー作成フロー
+<img width="315" height="596" alt="image" src="https://github.com/user-attachments/assets/4bca387e-873b-4233-82fd-b334ae867c9c" />
 
 - ユーザー管理範囲
 本システムは、ロールベースアクセス制御（RBAC）に基づく包括的なユーザー管理機能を提供される。
@@ -3569,6 +3549,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 これにより、注文確定後にマスターデータが変更されても、注文内部のデータは変わらず保持される。
 
 - 商品管理フロー
+<img width="440" height="427" alt="image" src="https://github.com/user-attachments/assets/085711e0-eb51-4828-ae91-e302ff1742af" />
 
 ## 10.3. 見積もり管理
 
@@ -3613,6 +3594,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
  	- 声掛けリスト(リマインダー)：見積もり完了時にサービス履歴を自動作成
 
 - 見積もり管理フロー
+<img width="440" height="384" alt="image" src="https://github.com/user-attachments/assets/c968c434-e848-40eb-b4b1-3810806c50b4" />
 
 ## 10.4. 車両・顧客管理
 
@@ -3651,6 +3633,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 	- サービス記録は、所有者変更に関わらず該当車両に恒久的に紐づく
 
 - 車両・顧客管理フロー
+<img width="440" height="383" alt="image" src="https://github.com/user-attachments/assets/657d8e58-34bb-4248-9d96-f73e5ec1e464" />
 
 # 11. データフロー設計
 
@@ -4073,6 +4056,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 
 ログインに失敗した場合、明確かつ簡潔なエラー文を表示。
 これにより、誤ったユーザー名、無効なパスワード、その他の問題が原因であるかをユーザーに知らせ、混乱することなく修正できるよう案内。
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/d1d138b7-d566-49a8-b392-160762af2db2" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4094,6 +4078,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 車両識別プロセスをさらに高速化するため、インターフェースにはデバイスのカメラを使用したスキャンオプションが含まれている。
 
 ユーザーは車両のナンバープレートを直接スキャンすることも、QR コードをスキャンすることもでき、手動入力に対する柔軟でエラーを減らす代替手段を提供。
+<img width="356" height="247" alt="image" src="https://github.com/user-attachments/assets/5f46b39f-0379-4483-969c-897d11b1727c" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4141,6 +4126,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 インターフェースには、システムに新しい車両を登録するためのシンプルで直感的なワークフローが含まれる。
 
 この機能は、新規顧客のオンボーディングや既存顧客のプロファイルに追加車両を登録する際に不可欠であり、データベースが最新かつ完全な状態に保たれることを保証。
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/f74638c5-4bf3-4972-9a85-b6888ce8fec5" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4207,6 +4193,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 過去に実施されたすべての作業が網羅的に記録されており、交換部品や作業項目の一覧、技術者の記録、サービス日付などを含む。
 
 この容易にアクセス可能な情報は、現在の問題の診断や一貫したサービス品質の維持に極めて重要。
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/6273a3eb-b3d2-430d-b347-991455edb63b" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4282,6 +4269,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 インターフェースには、商品の希望数量を選択し、それを現在の注文または販売カートに直接追加するための直感的な仕組みが用意されている。
 
 この POS（Point-of-Sale）ワークフローへのシームレスな統合により、商品選択から最終的なチェックアウトまで、顧客の請求書作成プロセスが効率化される。
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/c0c7e727-8113-4a70-802a-f0de02340aa7" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4327,6 +4315,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 点検結果に基づき、システムは必要な部品およびサービスの推奨リストを自動生成する。
 
 「要注意」とマークされた項目について、アプリケーションは適切な交換部品または修理内容を提案することができ、顧客向けの正確なサービス見積作成を効率化し、診断から解決までのプロセスをスムーズに橋渡しする。
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/cdaa0727-8d2e-40b6-b3a9-fc1fb591638a" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4389,6 +4378,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 例：
 - 顧客向けに物理的なレシートを印刷
 - 会計や台帳用途のため、PDF などのデジタル記録を作成
+<img width="359" height="249" alt="image" src="https://github.com/user-attachments/assets/d906b850-e10a-4e5a-af77-08c709ca3505" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4499,6 +4489,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 サービス管理、タブレットユーザー管理、店舗管理、および注文履歴の閲覧を行うためのナビゲーションリンクを含む。
 
 権限を持つロールのみが顧客管理へアクセス顧客管理セクションには、適切な権限を持つユーザーのみアクセスできる。
+<img width="438" height="251" alt="image" src="https://github.com/user-attachments/assets/5941c38f-bccc-4d86-b133-0f9ec16ca14d" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4534,6 +4525,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 - 権限コントロールを伴うユーザープロファイル編集
 
 ユーザープロファイルの編集が可能であるが、ログイン中のユーザーが必要な権限を持っている場合に限られる。
+<img width="438" height="251" alt="image" src="https://github.com/user-attachments/assets/263df62c-20dc-48a6-80f2-93699a034f92" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4581,6 +4573,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 - 顧客データのインポート／エクスポート機能
 
 ファイルからの顧客データの一括インポート、およびすべての顧客データのファイルへのエクスポートをサポート。
+<img width="438" height="251" alt="image" src="https://github.com/user-attachments/assets/518a7522-111b-4e13-bc56-6d4b2a0e1b2f" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4634,6 +4627,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 - ステータス追跡付きの非同期エクスポート
 
 大量データのエクスポートはバックグラウンドプロセスとして実行されるため、ユーザーは待つ必要がありませんユーザーはエクスポートジョブの進行状況を確認できる。
+<img width="438" height="251" alt="image" src="https://github.com/user-attachments/assets/98cc7b05-ec18-4744-bc1b-2cc356c5eeed" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4666,6 +4660,7 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 - すべてのレポートのエクスポート機能
 
 生成されたすべてのレポートをファイルとしてダウンロードできる。
+<img width="438" height="251" alt="image" src="https://github.com/user-attachments/assets/00b857c6-1e47-4ec1-af44-d4b0969e396e" />
 
 | No. | フィールド名 | 説明 |
 |----|----|----|
@@ -4697,12 +4692,14 @@ ETRCARS システムでは、iOS アプリケーションおよび Web アプリ
 
 ## 14.3. 画面遷移図
 ユーザーがアプリケーション内をどのように操作・遷移するかを示す参考資料として、ユーザーインターフェースの画面遷移図を以下。
+<img width="452" height="596" alt="image" src="https://github.com/user-attachments/assets/1dde95b4-13d0-49a9-9605-bf9d20ccaf41" />
 
 # 15. データベース構造
 ETRCARS システムでは、PostgreSQL をデータベースとして採用しており、主要なデータ構造は以下のとおり。：
 
 ## 15.1. テーブル構成
 システムで使用するデータベースのテーブル構成について定義する。
+<img width="451" height="387" alt="image" src="https://github.com/user-attachments/assets/a95ea259-13fd-4722-89f2-e0e732d66fa6" />
 
 ## 15.2. テーブル構造
 | テーブルNo. | テーブル名(物理名) | テーブル名(論理名) |
@@ -6390,142 +6387,206 @@ ETRCARS システムでは、PostgreSQL をデータベースとして採用し�
 ## 15.3. Web機能
 ##### 一般機能
 - ディーラー:ディーラーの管理と構成
+<img width="397" height="273" alt="image" src="https://github.com/user-attachments/assets/0fe3dc97-a0bf-41bd-90df-107d0a7bd02d" />
 
 - アナウンス:システムのアナウンスと通知
+<img width="366" height="321" alt="image" src="https://github.com/user-attachments/assets/87cbd71b-f51b-4fe0-b4ea-1f732e3f12d5" />
 
 ##### マスターデータ機能
 - メーカーとモデル：自動車ブランドとモデルの管理
+<img width="428" height="166" alt="image" src="https://github.com/user-attachments/assets/db0b4e64-e4ee-4d52-b3d2-6858f7f359bd" />
 
 - 基本的な製品/サービスの推奨：コア製品の推奨構成
+<img width="306" height="333" alt="image" src="https://github.com/user-attachments/assets/9e6e2446-a612-431a-86fa-55a55012273a" />
 
 - その他の製品/サービスの推奨:追加の製品推奨管理
+<img width="321" height="318" alt="image" src="https://github.com/user-attachments/assets/0c61367f-b860-4906-9c81-e097b8b75619" />
 
 - その他の製品/サービスカテゴリ：製品カテゴリ管理
+<img width="150" height="92" alt="image" src="https://github.com/user-attachments/assets/8c60ff63-8e88-48cb-b079-7e9b99214051" />
 
 - 郵便番号アドレス：地理的位置管理
+<img width="102" height="153" alt="image" src="https://github.com/user-attachments/assets/766c6c39-32f1-4be7-85b2-fd560536208f" />
 
 ##### 購入管理機能
 - 購入管理：購入記録の追跡
+<img width="428" height="509" alt="image" src="https://github.com/user-attachments/assets/829b98f2-2520-4536-9ce2-c219009e4852" />
 
 - アンケート履歴：アンケート回答履歴と分析
+<img width="425" height="204" alt="image" src="https://github.com/user-attachments/assets/fb4f01d1-2c1c-4069-9599-debe61c61b23" />
 
 ##### 注文管理機能
 - 注文履歴分析：注文データの分析とレポート
+<img width="425" height="316" alt="image" src="https://github.com/user-attachments/assets/5949f9f5-e235-4417-ac4f-4b5d99799e6c" />
 
 - 帳票発行履歴：帳票発行履歴の追跡と管理
+<img width="428" height="472" alt="image" src="https://github.com/user-attachments/assets/7a080458-c840-4ab5-a2d5-bfed4814ad3e" />
 
 ##### 売上分析機能
 - リペア分析：リペアデータ分析
+<img width="357" height="289" alt="image" src="https://github.com/user-attachments/assets/7fde8b6e-1640-4489-bf2c-90daeaede3d3" />
 
 - 日次/月次売上実績：期間別売上履歴
+<img width="425" height="315" alt="image" src="https://github.com/user-attachments/assets/111665ac-ceb3-43a3-a6ac-0ad4b0c9550f" />
 
 ##### 顧客登録分析機能
 - 日次/月次顧客登録実績:定期的な顧客獲得指標
+<img width="425" height="147" alt="image" src="https://github.com/user-attachments/assets/1ef26463-ddb9-4c78-b5cf-19338c48e273" />
 
 ##### ショップ情報設定機能
 - タブレットユーザー：タブレットユーザーアカウント管理
+<img width="425" height="276" alt="image" src="https://github.com/user-attachments/assets/ceadce4f-6ad5-46dd-8c51-0e81c11e0d7a" />
 
 - Webユーザー:Webユーザーアカウント管理
+<img width="425" height="276" alt="image" src="https://github.com/user-attachments/assets/28f9c7fe-6b9a-4131-a64f-14decd31297f" />
 
 - ショップ：ショップの構成と管理
+<img width="284" height="327" alt="image" src="https://github.com/user-attachments/assets/be7474b3-ebe7-44c4-912f-dad887e6c703" />
 
 - アンケート作成：調査の設計と作成
+<img width="425" height="219" alt="image" src="https://github.com/user-attachments/assets/388cdfa7-5898-424f-aa22-7486bfd959ed" />
 
 - アンケートメニュー：アンケートメニューの設定
+<img width="425" height="297" alt="image" src="https://github.com/user-attachments/assets/75b1d0a3-dc75-4ab9-b2b5-994af8238860" />
 
 - Todoリスト：Todoリスト管理
+<img width="425" height="122" alt="image" src="https://github.com/user-attachments/assets/56e53027-bef7-452d-847c-1f2368e02a87" />
 
 - 声掛けリスト：声掛けリスト機能の設定
+<img width="425" height="171" alt="image" src="https://github.com/user-attachments/assets/e5cf42e8-95ce-4f35-8c04-824a72a7792d" />
 
 - 貸出車両借用書・整備保証書：貸出車両借用書・整備保証書管理
+<img width="343" height="285" alt="image" src="https://github.com/user-attachments/assets/4028e33a-2a6c-4a29-89c5-1ed8712384b4" />
 
 ##### マスターデータ設定機能
 - サービス:サービスタイプの構成
+<img width="343" height="280" alt="image" src="https://github.com/user-attachments/assets/11eeda86-c74f-4a02-b144-c11311c75f04" />
 
 - 商品:商品マスター管理
+<img width="425" height="299" alt="image" src="https://github.com/user-attachments/assets/3c5a4a92-fb92-46aa-a96c-dfb2d3dcecb3" />
 
 - 顧客：顧客データ管理
+<img width="425" height="204" alt="image" src="https://github.com/user-attachments/assets/2931c2cd-e703-4b7e-9332-3d226f0164b8" />
 
 ##### インポート/エクスポート機能
 - インポート結果:インポート操作の追跡
+<img width="425" height="230" alt="image" src="https://github.com/user-attachments/assets/d0d403a0-045e-4c2e-9f25-2dd2146e9e04" />
 
 - エクスポート結果：エクスポート操作の追跡
+<img width="349" height="247" alt="image" src="https://github.com/user-attachments/assets/5de0ad46-8b7f-4f3d-ab5b-baf2a920c940" />
 
 ##### 工場機能
 - 車検実施店設定：車検実施店設定管理
+<img width="355" height="331" alt="image" src="https://github.com/user-attachments/assets/3a9b685b-3f83-4ee4-8f9b-9f2d37a9f1f9" />
 
 - 工場：工場管理
+<img width="425" height="276" alt="image" src="https://github.com/user-attachments/assets/cb06b36a-8e2d-4954-bde9-af02f84b04ae" />
 
 - 工場ユーザー：工場ユーザー管理
+<img width="425" height="313" alt="image" src="https://github.com/user-attachments/assets/ddace0e3-b44c-42ba-816c-b4aa5a307f94" />
 
 - 工場予約：予約と注文状況の追跡
+<img width="425" height="285" alt="image" src="https://github.com/user-attachments/assets/bb865fca-b1a6-4c09-937f-7e290515dfb7" />
 
 - 1日あたりの容量設定：1日あたりの最大容量（タッチ＆カー）を管理
+<img width="261" height="181" alt="image" src="https://github.com/user-attachments/assets/843d2b8f-9b49-48dd-80b4-f5060cafeafb" />
 
 - 工場カレンダー：週/月カレンダーの予約ダッシュボード
+<img width="255" height="177" alt="image" src="https://github.com/user-attachments/assets/049871c0-f40d-4425-882a-2cd46f1b2a11" />
 
 ##### その他
 - 受注：購入履歴分析をエクスポート
+<img width="428" height="331" alt="image" src="https://github.com/user-attachments/assets/5ce326fd-0252-4dc9-af81-ae24b92c9899" />
 
 - 受注/購買履歴:注文状況やその他の詳細の追跡
+<img width="425" height="378" alt="image" src="https://github.com/user-attachments/assets/47da084e-7ee5-4e7f-b862-e3711778c70e" />
 
 - 台数：顧客の車のダッシュボードと管理
+<img width="425" height="258" alt="image" src="https://github.com/user-attachments/assets/11888008-105f-458d-8f8e-9548514bdd72" />
 
 - 販売履歴：販売データダッシュボード
+<img width="408" height="302" alt="image" src="https://github.com/user-attachments/assets/a3fa9977-19a3-4412-b7a3-57a157e6be0b" />
 
 - 車両情報/顧客情報:車両情報/顧客情報
+<img width="425" height="258" alt="image" src="https://github.com/user-attachments/assets/0adb4513-2c32-4ff6-a3a6-7b9ced179a40" />
 
 - 新規獲得記録：新規顧客獲得の追跡
+<img width="425" height="315" alt="image" src="https://github.com/user-attachments/assets/d97f5afd-a151-4c24-89f9-fb0d6a9eb353" />
 
 - 購入回数：購入頻度分析
+<img width="425" height="273" alt="image" src="https://github.com/user-attachments/assets/39100db1-3656-471e-8bb4-e19edfcfd415" />
 
 - 利用店舗数：店舗利用率指標
+<img width="425" height="273" alt="image" src="https://github.com/user-attachments/assets/e8b08aa5-4727-4687-bafe-6141bcdad6d5" />
 
 - 製品購入：製品購入分析
+<img width="425" height="315" alt="image" src="https://github.com/user-attachments/assets/ffccd7a4-99e4-4663-b27e-471311637db4" />
 
 - 顧客登録：顧客登録管理
+<img width="425" height="273" alt="image" src="https://github.com/user-attachments/assets/ec1819f7-6ed7-4185-bd08-ff64b9a6a67b" />
 
 - ログ:システムログとアクティビティの追跡
+<img width="377" height="352" alt="image" src="https://github.com/user-attachments/assets/b97a0c94-29dc-4465-9c62-1ca0808d0e24" />
 
 ## 15.4. iOS機能
 ##### 認証およびログイン機能
+<img width="425" height="293" alt="image" src="https://github.com/user-attachments/assets/fe66e362-143c-4f3e-b28d-e77a328e42de" />
 
 ##### ホームと検索機能
+<img width="425" height="147" alt="image" src="https://github.com/user-attachments/assets/356e204d-ba52-4bc8-8299-c010f67ae956" />
 
 ##### カレンダーと予約機能
+<img width="425" height="276" alt="image" src="https://github.com/user-attachments/assets/e023d862-ed82-483c-b159-3a34e09071ed" />
 
 ##### リペアカレンダー機能
+<img width="425" height="285" alt="image" src="https://github.com/user-attachments/assets/c441b7bd-8353-429b-94a5-da4de5232b63" />
 
 ##### アクションリスト機能
+<img width="445" height="168" alt="image" src="https://github.com/user-attachments/assets/87303d3e-24dd-4f4c-8f66-6c544441802a" />
 
 ##### お知らせ機能
+<img width="403" height="339" alt="image" src="https://github.com/user-attachments/assets/a41a0245-732e-4a96-bb31-50369ae5e1ec" />
 
 ##### 設定機能
+<img width="425" height="293" alt="image" src="https://github.com/user-attachments/assets/175e5922-42cc-4e2a-ae42-a4334a6d652c" />
 
 ##### 顧客/車両検索機能
+<img width="425" height="147" alt="image" src="https://github.com/user-attachments/assets/724c18d5-dcd4-477c-b689-a5f6f6a8f8ac" />
 
 ##### 携行缶詰替え販売機能
+<img width="414" height="310" alt="image" src="https://github.com/user-attachments/assets/5b2192e8-74b0-4436-af03-7c0d5dacab59" />
 
 ##### カーメンテナンス機能
+<img width="414" height="320" alt="image" src="https://github.com/user-attachments/assets/d8a11aaf-518d-47b2-bedb-946f69d4413a" />
 
 ##### 安全点検機能
+<img width="445" height="354" alt="image" src="https://github.com/user-attachments/assets/c1aac938-f690-4b00-8e18-2e3c71bb036b" />
 
 ##### 車両お預かり証機能
+<img width="445" height="414" alt="image" src="https://github.com/user-attachments/assets/9ee5823d-8f9b-45d0-beb7-79b49b4f40b4" />
 
 ##### 代車貸出証機能
+<img width="445" height="414" alt="image" src="https://github.com/user-attachments/assets/9431c5eb-6fee-40be-bc8c-a2da4e5432ec" />
 
 ##### 部品発注書機能
+<img width="448" height="417" alt="image" src="https://github.com/user-attachments/assets/d44bb117-9c3d-4af7-be48-d7405ec6ebf5" />
 
 ##### 車両/顧客情報機能
+<img width="454" height="157" alt="image" src="https://github.com/user-attachments/assets/2ecf9147-187f-4131-9896-802db258978e" />
 
 ##### 顧客情報機能
+<img width="445" height="154" alt="image" src="https://github.com/user-attachments/assets/609fc927-1c47-4149-9cd9-61d43cb47a86" />
 
 ##### 車両履歴詳細機能
 - Todoリスト
+<img width="445" height="261" alt="image" src="https://github.com/user-attachments/assets/d3325576-6ae2-4e79-b3c3-2b0397f1e35b" />
 
 - 声掛けリスト
+<img width="445" height="380" alt="image" src="https://github.com/user-attachments/assets/197b82fe-f337-4244-9909-82fb25e242a5" />
 
 ##### 車検機能
+<img width="445" height="526" alt="image" src="https://github.com/user-attachments/assets/2ed5442a-cf9f-44bc-8c61-51116858b911" />
 
 ##### 見積もり概要機能
+<img width="425" height="329" alt="image" src="https://github.com/user-attachments/assets/0444d608-12b2-4272-a45c-ad8e578ed7a4" />
 
