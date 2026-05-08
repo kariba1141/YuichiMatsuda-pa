@@ -3055,7 +3055,116 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 - 200 OK：取得成功
 - 401 Unauthorized：トークンなし／無効
 
-#### 5.2.9.5. エラーハンドリング方針
+#### 5.2.9.5. 権限・ブランチアカウント管理
+
+##### 5.2.9.5.1. 権限カタログ
+- エンドポイント：/api/permissions/
+- メソッド：GET
+- 認証：必須（JWT Bearer）
+- 目的：利用可能な権限のマスターカタログを返す。
+
+##### レスポンス（200 OK）
+```json
+[
+  {
+    "id": 1,
+    "major_key": "settings",
+    "middle_key": "shop_information_settings",
+    "minor_key": "user_profiles",
+    "pkey": "settings.shop_information_settings.user_profiles",
+    "sequence": 10,
+    "is_active": true,
+    "description": ""
+  }
+]
+```
+
+##### 5.2.9.5.2. ロール権限管理
+- エンドポイント：
+  - /api/role-permissions/（一覧取得・新規作成）
+  - /api/role-permissions/{id}/（更新・削除）
+- メソッド：GET, POST, PATCH, DELETE
+- 認証：必須（JWT Bearer）
+- 目的：ディーラーごと（Branch Admin の場合はブランチごと）のロールレベル権限ベースラインを管理する。
+
+##### クエリパラメータ（一覧）
+- dealer_id：number（任意）
+- branch_id：number（任意）
+
+##### バリデーション（作成/更新）
+- role = 6（Branch Admin）の場合、サーバーは dealer = null を強制し、(role, branch) の一意性を適用する。
+- それ以外の場合、(role, dealer) の一意性を適用する。
+- 更新後、同じ role/scope の下のすべてのユーザー単位オーバーライドがリセットされ、ユーザーは新しいベースラインにフォールバックする。
+
+##### リクエストボディ（作成/更新）
+```json
+{
+  "role": 0,
+  "dealer": 12,
+  "branch": 3,
+  "permissions": [1, 2, 3, 5]
+}
+```
+
+##### レスポンス（200 OK / 201 Created）
+```json
+{
+  "count": 1,
+  "results": [
+    {
+      "id": 7,
+      "role": 0,
+      "dealer": 12,
+      "dealer_name": "Tokyo Dealer",
+      "branch": 3,
+      "branch_name": "Tokyo Branch",
+      "permissions": [1, 2, 3, 5]
+    }
+  ]
+}
+```
+
+##### 5.2.9.5.3. ユーザー権限管理
+- エンドポイント：
+  - /api/user-profiles/{id}/permissions/（ユーザーの有効権限を取得）
+  - /api/user-profiles/{id}/update-permissions/（ユーザー単位のオーバーライドを更新）
+  - /api/user-profiles/self-permissions/（現在のユーザーがアクセスできる pkey を取得）
+- メソッド：GET, PATCH
+- 認証：必須（JWT Bearer）
+- 目的：ユーザー単位の有効権限を読み取り、ロールベースラインの上にユーザー単位オーバーライドを管理する。
+
+##### 更新動作（PATCH）
+- allow = リクエスト − role_baseline、deny = role_baseline − リクエスト として計算される。
+- 有効権限 = ロールベースライン + allow − deny
+
+##### リクエストボディ（更新）
+```json
+{ "permissions": [1, 2, 3, 5, 10, 12] }
+```
+
+##### レスポンス（200 OK）— 有効権限
+```json
+[1, 2, 3, 5, 10, 12]
+```
+
+##### レスポンス（200 OK）— Self Permissions（pkeys）
+```json
+[
+  "settings.shop_information_settings.user_profiles",
+  "factory_menu.factory_settings.factory_capacity"
+]
+```
+
+##### 5.2.9.5.4. ブランチアカウント管理（Branch Account Management）
+- エンドポイント：
+  - /api/branch-account-user-profiles/（Branch Admin ユーザーの一覧取得・作成）
+  - /api/branch-account-user-profiles/{id}/（更新・ソフトデリート）
+  - /api/branch-account-user-profiles/{id}/reset-password/（パスワードリセットおよびセットアップメール再送）
+- メソッド：GET, POST, PATCH, DELETE
+- 認証：必須（JWT Bearer）
+- 認可：Admin のみ作成・削除が可能。Branch Admin はリード操作のみ。
+
+### 5.2.10. エラーハンドリング方針
 ##### HTTP ステータスコード
 - 200 OK：GET／PATCH の成功
 - 201 Created：POST の成功
@@ -3117,161 +3226,63 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ```
 
 
-#### 5.2.9.6. 権限・ブランチアカウント管理
-
-##### 5.2.9.6.1. 権限カタログ
-- エンドポイント：/api/permissions/
-- メソッド：GET
-- 認証：必須（JWT Bearer）
-- 目的：利用可能な権限のマスターカタログを返す。
-
-##### レスポンス（200 OK）
-```json
-[
-  {
-    "id": 1,
-    "major_key": "settings",
-    "middle_key": "shop_information_settings",
-    "minor_key": "user_profiles",
-    "pkey": "settings.shop_information_settings.user_profiles",
-    "sequence": 10,
-    "is_active": true,
-    "description": ""
-  }
-]
-```
-
-##### 5.2.9.6.2. ロール権限管理
-- エンドポイント：
-  - /api/role-permissions/（一覧取得・新規作成）
-  - /api/role-permissions/{id}/（更新・削除）
-- メソッド：GET, POST, PATCH, DELETE
-- 認証：必須（JWT Bearer）
-- 目的：ディーラーごと（Branch Admin の場合はブランチごと）のロールレベル権限ベースラインを管理する。
-
-##### クエリパラメータ（一覧）
-- dealer_id：number（任意）
-- branch_id：number（任意）
-
-##### バリデーション（作成/更新）
-- role = 6（Branch Admin）の場合、サーバーは dealer = null を強制し、(role, branch) の一意性を適用する。
-- それ以外の場合、(role, dealer) の一意性を適用する。
-- 更新後、同じ role/scope の下のすべてのユーザー単位オーバーライドがリセットされ、ユーザーは新しいベースラインにフォールバックする。
-
-##### リクエストボディ（作成/更新）
-```json
-{
-  "role": 0,
-  "dealer": 12,
-  "branch": 3,
-  "permissions": [1, 2, 3, 5]
-}
-```
-
-##### レスポンス（200 OK / 201 Created）
-```json
-{
-  "count": 1,
-  "results": [
-    {
-      "id": 7,
-      "role": 0,
-      "dealer": 12,
-      "dealer_name": "Tokyo Dealer",
-      "branch": 3,
-      "branch_name": "Tokyo Branch",
-      "permissions": [1, 2, 3, 5]
-    }
-  ]
-}
-```
-
-##### 5.2.9.6.3. ユーザー権限管理
-- エンドポイント：
-  - /api/user-profiles/{id}/permissions/（ユーザーの有効権限を取得）
-  - /api/user-profiles/{id}/update-permissions/（ユーザー単位のオーバーライドを更新）
-  - /api/user-profiles/self-permissions/（現在のユーザーがアクセスできる pkey を取得）
-- メソッド：GET, PATCH
-- 認証：必須（JWT Bearer）
-- 目的：ユーザー単位の有効権限を読み取り、ロールベースラインの上にユーザー単位オーバーライドを管理する。
-
-##### 更新動作（PATCH）
-- allow = リクエスト − role_baseline、deny = role_baseline − リクエスト として計算される。
-- 有効権限 = ロールベースライン + allow − deny
-
-##### リクエストボディ（更新）
-```json
-{ "permissions": [1, 2, 3, 5, 10, 12] }
-```
-
-##### レスポンス（200 OK）— 有効権限
-```json
-[1, 2, 3, 5, 10, 12]
-```
-
-##### レスポンス（200 OK）— Self Permissions（pkeys）
-```json
-[
-  "settings.shop_information_settings.user_profiles",
-  "factory_menu.factory_settings.factory_capacity"
-]
-```
-
-##### 5.2.9.6.4. ブランチアカウント管理（Branch Account Management）
-- エンドポイント：
-  - /api/branch-account-user-profiles/（Branch Admin ユーザーの一覧取得・作成）
-  - /api/branch-account-user-profiles/{id}/（更新・ソフトデリート）
-  - /api/branch-account-user-profiles/{id}/reset-password/（パスワードリセットおよびセットアップメール再送）
-- メソッド：GET, POST, PATCH, DELETE
-- 認証：必須（JWT Bearer）
-- 認可：Admin のみ作成・削除が可能。Branch Admin はリード操作のみ。
-
 # 6. プロセスシーケンス図
 ## 6.1. 認証APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.1_authentication_flow.png" alt="## 6.1. 認証APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.1_flow.png" alt="6.1 p1" style="max-width:100%;" />
 ## 6.2. 顧客管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.2_customer_management_flow.png" alt="## 6.2. 顧客管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.2_flow.png" alt="6.2 p1" style="max-width:100%;" />
 ## 6.3. ナンバープレート管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_license_plate_flow.png" alt="## 6.3. ナンバープレート管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_flow_p1.png" alt="6.3 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_flow_p2.png" alt="6.3 p2" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_flow_p3.png" alt="6.3 p3" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_flow_p4.png" alt="6.3 p4" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.3_flow_p5.png" alt="6.3 p5" style="max-width:100%;" />
 ## 6.4. 車両管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_vehicle_management_flow.png" alt="## 6.4. 車両管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p1.png" alt="6.4 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p2.png" alt="6.4 p2" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p3.png" alt="6.4 p3" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p4.png" alt="6.4 p4" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p5.png" alt="6.4 p5" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p6.png" alt="6.4 p6" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.4_flow_p7.png" alt="6.4 p7" style="max-width:100%;" />
 ## 6.5. 見積管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_order_management_flow.png" alt="## 6.5. 見積管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p1.png" alt="6.5 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p2.png" alt="6.5 p2" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p3.png" alt="6.5 p3" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p4.png" alt="6.5 p4" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p5.png" alt="6.5 p5" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p6.png" alt="6.5 p6" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.5_flow_p7.png" alt="6.5 p7" style="max-width:100%;" />
 ## 6.6. 予約・カレンダーAPIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_booking_scheduling_flow.png" alt="## 6.6. 予約・カレンダーAPIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_flow_p1.png" alt="6.6 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_flow_p2.png" alt="6.6 p2" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_flow_p3.png" alt="6.6 p3" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.6_flow_p4.png" alt="6.6 p4" style="max-width:100%;" />
 ## 6.7. 分析・レポートAPIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_analytics_reporting_flow.png" alt="## 6.7. 分析・レポートAPIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_flow_p1.png" alt="6.7 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.7_flow_p2.png" alt="6.7 p2" style="max-width:100%;" />
 ## 6.8. 声掛けリストAPIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.8_reminder_flow.png" alt="## 6.8. 声掛けリストAPIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.8_flow_p1.png" alt="6.8 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.8_flow_p2.png" alt="6.8 p2" style="max-width:100%;" />
 ## 6.9. アンケートメニューAPIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_questionnaire_menu_flow.png" alt="## 6.9. アンケートメニューAPIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_flow_p1.png" alt="6.9 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.9_flow_p2.png" alt="6.9 p2" style="max-width:100%;" />
 ## 6.10. アンケート履歴APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.10_question_history_flow.png" alt="## 6.10. アンケート履歴APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.10_flow.png" alt="6.10 p1" style="max-width:100%;" />
 ## 6.11. ユーザー管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_user_management_flow.png" alt="## 6.11. ユーザー管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_flow_p1.png" alt="6.11 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_flow_p2.png" alt="6.11 p2" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.11_flow_p3.png" alt="6.11 p3" style="max-width:100%;" />
 ## 6.12. ディーラー管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.12_dealer_management_flow.png" alt="## 6.12. ディーラー管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.12_flow.png" alt="6.12 p1" style="max-width:100%;" />
 ## 6.13. ショップ管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_shop_management_flow.png" alt="## 6.13. ショップ管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_flow_p1.png" alt="6.13 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.13_flow_p2.png" alt="6.13 p2" style="max-width:100%;" />
 ## 6.14. ログ管理APIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.14_logs_flow.png" alt="## 6.14. ログ管理APIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.14_flow.png" alt="6.14 p1" style="max-width:100%;" />
 ## 6.15. インポート・エクスポートAPIの処理フロー
-<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_import_export_flow.png" alt="## 6.15. インポート・エクスポートAPIの処理フロー" style="max-width:600px;width:600px;" />
-
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_flow_p1.png" alt="6.15 p1" style="max-width:100%;" />
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.15_flow_p2.png" alt="6.15 p2" style="max-width:100%;" />
 ## 6.16. 権限管理 & Branch Admin 処理フロー
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
