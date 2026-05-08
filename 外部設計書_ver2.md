@@ -3316,7 +3316,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ##### 声掛けリスト（リマインダー）管理
 <img width="440" height="491" alt="image" src="https://github.com/user-attachments/assets/340b78a4-10dd-435b-a337-54fdc336b18f" />
 
-##### 声掛けリストあ（リマインダー）の更新、及び、削除
+##### 声掛けリスト（リマインダー）の更新、及び、削除
 <img width="440" height="472" alt="image" src="https://github.com/user-attachments/assets/3049648e-a293-4713-91f8-bd5294490607" />
 
 ## 6.9. アンケートメニューAPIの処理フロー
