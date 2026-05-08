@@ -3364,17 +3364,7 @@ GET /api/car_checkup_orders/export/?from_date=2026-01-01&to_date=2026-02-01&insp
 ## 6.16. 権限管理 & Branch Admin 処理フロー
 本セクションは権限管理および Branch Admin に関する4つのシーケンスフローを定義する。
 
-##### 管理者によるロール権限設定（Admin Configures Role Permissions）
-（シーケンス図プレースホルダー）
-
-##### ユーザー単位のサイドバーオーバーライド（Per-User Sidebar Override）
-（シーケンス図プレースホルダー）
-
-##### Branch Admin ログイン（Branch Admin Login）
-（シーケンス図プレースホルダー）
-
-##### フィーチャーページアクセスチェック（Feature Page Access Check）
-（シーケンス図プレースホルダー）
+<img src="https://raw.githubusercontent.com/kariba1141/YuichiMatsuda-pa/main/images/6.16_permission_branch_admin_flow.png" alt="6.16_permission_branch_admin_flow.png" style="max-width:100%;" />
 
 # 7. 運用・保守設計
 ## 7.1. 環境構成
